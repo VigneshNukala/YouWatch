@@ -107,28 +107,29 @@ class Header extends Component {
                     />
                   </Para>
                   <ListItem color={`${color}`}>
+                    <HiHome className="nav-icons" />
                     <Link to="/" className={navColor}>
-                      <HiHome className="nav-icons" />
                       Home
                     </Link>
                   </ListItem>
-                  <Link to="/trending" className={navColor}>
-                    <ListItem color={`${color}`}>
-                      <AiFillFire className="nav-icons" />
+                  <ListItem color={`${color}`}>
+                    <AiFillFire className="nav-icons" />
+                    <Link to="/trending" className={navColor}>
                       Trending
-                    </ListItem>
-                  </Link>
-                  <Link to="/gaming" className={navColor}>
-                    <ListItem color={`${color}`}>
-                      <SiYoutubegaming className="nav-icons" /> Gaming
-                    </ListItem>
-                  </Link>
-                  <Link to="/saved-videos" className={navColor}>
-                    <ListItem color={`${color}`}>
-                      <MdPlaylistAdd className="nav-icons" />
+                    </Link>
+                  </ListItem>
+                  <ListItem color={`${color}`}>
+                    <SiYoutubegaming className="nav-icons" />
+                    <Link to="/gaming" className={navColor}>
+                      Gaming
+                    </Link>
+                  </ListItem>
+                  <ListItem color={`${color}`}>
+                    <MdPlaylistAdd className="nav-icons" />
+                    <Link to="/saved-videos" className={navColor}>
                       Saved videos
-                    </ListItem>
-                  </Link>
+                    </Link>
+                  </ListItem>
                 </ListContainer>
               </ExtraDiv>
               <HeaderContentsLargeContainer>

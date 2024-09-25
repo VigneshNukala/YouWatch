@@ -2,6 +2,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {Link, Redirect} from 'react-router-dom'
 import {AiOutlineSearch} from 'react-icons/ai'
+import {ImCross} from 'react-icons/im'
 import LoaderComp from '../Loader'
 
 import './index.css'
@@ -25,10 +26,17 @@ import {
   NoResultsHeading,
   NoResultsPara,
   NoResultsButton,
+  TopDiv,
 } from './styledComponents'
 
 class Home extends Component {
-  state = {dataArray: [], isLoading: true, status: '', searchIp: ''}
+  state = {
+    dataArray: [],
+    isLoading: true,
+    status: '',
+    searchIp: '',
+    close: false,
+  }
 
   componentDidMount() {
     this.getVideos()
@@ -74,8 +82,12 @@ class Home extends Component {
     this.onSearch()
   }
 
+  onClickCloseBtn = () => {
+    this.setState({close: true})
+  }
+
   render() {
-    const {dataArray, isLoading, status, searchIp} = this.state
+    const {dataArray, isLoading, status, searchIp, close} = this.state
 
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken === undefined) {
@@ -88,96 +100,123 @@ class Home extends Component {
           const {activeTheme} = value
           const color = activeTheme === 'light' ? '#000000' : '#ffffff'
           const bgColor = activeTheme === 'light' ? '#f9f9f9' : '#000000'
-
           return (
-            <HomeContainer bgColor={`${bgColor}`} color={`${color}`}>
-              {isLoading ? (
-                <LoaderComp />
-              ) : (
-                <>
-                  {status ? (
-                    <>
-                      <HeadDiv>
-                        <SearchIp
-                          placeholder="Search Channel"
-                          type="search"
-                          value={searchIp}
-                          onChange={this.onChange}
-                          onKeyDown={this.onKey}
-                        />
-                        <ButtonEl onClick={this.onSearch}>
-                          <AiOutlineSearch size={20} />
-                        </ButtonEl>
-                      </HeadDiv>
-                      <>
-                        {dataArray.length === 0 ? (
-                          <NoResults>
-                            <NoVideosImage
-                              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
-                              alt="no videos"
-                            />
-                            <NoResultsHeading>
-                              No Search results found
-                            </NoResultsHeading>
-                            <NoResultsPara>
-                              Try different keywords or remove search filter
-                            </NoResultsPara>
-                            <NoResultsButton onClick={this.retry}>
-                              Retry
-                            </NoResultsButton>
-                          </NoResults>
-                        ) : (
-                          <ContentDiv>
-                            {dataArray.map(item => (
-                              <Link
-                                to={`/videos/${item.id}`}
-                                className={
-                                  activeTheme === 'light'
-                                    ? 'link-light'
-                                    : 'link-dark'
-                                }
-                                key={item.id}
-                              >
-                                <ListContainer>
-                                  <ListItem>
-                                    <ImageTag
-                                      src={`${item.thumbnail_url}`}
-                                      width="100%"
-                                    />
-                                  </ListItem>
-                                  <ListItem>
-                                    <div className="logo-div">
-                                      <ImageTag
-                                        src={`${item.channel.profile_image_url}`}
-                                        width="30px"
-                                      />
-                                    </div>
-                                    <div>
-                                      <ParaTag fontSize="15px">
-                                        {item.title}
-                                      </ParaTag>
-                                      <ParaTag fontSize="12px">
-                                        {item.channel.name}
-                                      </ParaTag>
-                                      <ParaTag fontSize="12px">
-                                        {item.view_count} views .{' '}
-                                        <span>{item.published_at}</span>
-                                      </ParaTag>
-                                    </div>
-                                  </ListItem>
-                                </ListContainer>
-                              </Link>
-                            ))}
-                          </ContentDiv>
-                        )}
-                      </>
-                    </>
-                  ) : (
-                    <ErrorImage refresh={this.getVideos} />
-                  )}
-                </>
+            <>
+              {close ? null : (
+                <TopDiv data-testid="banner">
+                  <div className="banner-top">
+                    <button
+                      className="banner-btn"
+                      type="button"
+                      data-testid="close"
+                      onClick={this.onClickCloseBtn}
+                    >
+                      <ImCross />
+                    </button>
+                  </div>
+                  <img
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                    alt="nxt watch logo"
+                    className="banner-logo"
+                  />
+                  <p className="banner-para">
+                    Buy Nxt Watch Premium prepaid plans with UPI
+                  </p>
+                  <button className="banner-getnow-btn" type="button">
+                    GET IT NOW
+                  </button>
+                </TopDiv>
               )}
-            </HomeContainer>
+
+              <HomeContainer bgColor={`${bgColor}`} color={`${color}`}>
+                {isLoading ? (
+                  <LoaderComp />
+                ) : (
+                  <>
+                    {status ? (
+                      <>
+                        <HeadDiv>
+                          <SearchIp
+                            placeholder="Search Channel"
+                            type="search"
+                            value={searchIp}
+                            onChange={this.onChange}
+                            onKeyDown={this.onKey}
+                          />
+                          <ButtonEl onClick={this.onSearch}>
+                            <AiOutlineSearch size={20} />
+                          </ButtonEl>
+                        </HeadDiv>
+                        <>
+                          {dataArray.length === 0 ? (
+                            <NoResults>
+                              <NoVideosImage
+                                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+                                alt="no videos"
+                              />
+                              <NoResultsHeading>
+                                No Search results found
+                              </NoResultsHeading>
+                              <NoResultsPara>
+                                Try different keywords or remove search filter
+                              </NoResultsPara>
+                              <NoResultsButton onClick={this.retry}>
+                                Retry
+                              </NoResultsButton>
+                            </NoResults>
+                          ) : (
+                            <ContentDiv>
+                              {dataArray.map(item => (
+                                <Link
+                                  to={`/videos/${item.id}`}
+                                  className={
+                                    activeTheme === 'light'
+                                      ? 'link-light'
+                                      : 'link-dark'
+                                  }
+                                  key={item.id}
+                                >
+                                  <ListContainer>
+                                    <ListItem>
+                                      <ImageTag
+                                        src={`${item.thumbnail_url}`}
+                                        width="100%"
+                                      />
+                                    </ListItem>
+                                    <ListItem>
+                                      <div className="logo-div">
+                                        <ImageTag
+                                          src={`${item.channel.profile_image_url}`}
+                                          width="30px"
+                                        />
+                                      </div>
+                                      <div>
+                                        <ParaTag fontSize="15px">
+                                          {item.title}
+                                        </ParaTag>
+                                        <ParaTag fontSize="12px">
+                                          {item.channel.name}
+                                        </ParaTag>
+                                        <ParaTag fontSize="12px">
+                                          {item.view_count} views .{' '}
+                                          <span>{item.published_at}</span>
+                                        </ParaTag>
+                                      </div>
+                                    </ListItem>
+                                  </ListContainer>
+                                </Link>
+                              ))}
+                            </ContentDiv>
+                          )}
+                        </>
+                      </>
+                    ) : (
+                      <ErrorImage refresh={this.getVideos} />
+                    )}
+                  </>
+                )}
+              </HomeContainer>
+            </>
           )
         }}
       </AppTheme.Consumer>

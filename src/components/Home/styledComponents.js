@@ -10,6 +10,15 @@ export const HomeContainer = styled.div`
   }
 `
 
+export const TopDiv = styled.div`
+    background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
+    background-size: cover;
+    display:flex;
+    flex-direction: column;
+    padding:2%;
+    height:40vh;
+}`
+
 export const HeadDiv = styled.div`
     border: 1px solid black;
     width: fit-content;

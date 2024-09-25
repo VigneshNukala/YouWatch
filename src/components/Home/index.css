@@ -8,3 +8,38 @@
 .link-dark {
   color: #ffffff;
 }
+
+.banner-top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.banner-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.banner-logo {
+  height: 40px;
+  width: 150px;
+}
+
+.banner-para {
+  color: #000000;
+  font-size: 20px;
+  font-family: 'Roboto';
+  font-weight: 400;
+  width: 40%;
+}
+
+.banner-getnow-btn {
+  background-color: transparent;
+  border: 2px solid #000000;
+  color: #000000;
+  padding: 8px;
+  width: 20%;
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-weight: 500;
+}

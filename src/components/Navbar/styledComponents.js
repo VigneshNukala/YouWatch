@@ -2,9 +2,9 @@ import styled from 'styled-components'
 
 export const DivContainer = styled.div`
   width: 25%;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 export const ListContainer = styled.ul`
@@ -44,4 +44,11 @@ export const ListItems = styled.li`
 
 export const SpanEl = styled.span`
   padding: 0 10px;
+`
+
+export const ParaEl = styled.p`
+  color: ${props => props.color};
+  font-family: 'Roboto';
+  font-size: 15px;
+  font-weight: 600;
 `

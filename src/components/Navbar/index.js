@@ -13,6 +13,7 @@ import {
   ListContainer,
   ListItems,
   SpanEl,
+  ParaEl,
 } from './styledComponents'
 
 import './index.css'
@@ -63,7 +64,7 @@ class Navbar extends Component {
                 </Link>
               </ListContainer>
               <div className="sidebar-bottom">
-                <p>CONTACT US</p>
+                <ParaEl color={`${color}`}>CONTACT US</ParaEl>
                 <div className="sidebar-logo-container">
                   <img
                     src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
@@ -81,7 +82,9 @@ class Navbar extends Component {
                     className="sidebar-logo"
                   />
                 </div>
-                <p>Enjoy! Now to see your channels and recommendations!</p>
+                <ParaEl color={`${color}`}>
+                  Enjoy! Now to see your channels and recommendations!
+                </ParaEl>
               </div>
             </DivContainer>
           )
