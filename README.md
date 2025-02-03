@@ -28,14 +28,14 @@ git clone https://github.com/VigneshNukala/YouWatch.git
 cd YouWatch
 ```
 
-### **2. Install dependencies for both frontend and backend:**
+### **2. Install dependencies:**
 
 Navigate to the root directory and run npm install (or yarn install).
 ```bash
 npm install  # or yarn install
 ```
 
-### **3. Start the servers (Two Different Terminals):**
+### **3. Start the server:**
 
 - **Frontend**
 To start the server, run below in a terminal:
@@ -43,7 +43,7 @@ To start the server, run below in a terminal:
 npm start  # or yarn start
 ```
 
-### **3. Open the servers**
+### **3. Open the server:**
 Once both servers are running, open your browser and visit:
 ```
 http://localhost:3000/
