@@ -7,9 +7,13 @@ This repository contains the Nxt Watch app, a YouTube alternative allowing users
 ## **Deployment Link:**
 https://shoppyease.ccbp.tech/login
 
-## **Login Credentials:**
-Username : rahul
-Password : rahul@2021
+## **Sample Valid User Credentials:**
+```
+{
+  "username":"rahul",
+  "password":"rahul@2021"
+}
+```
 
 ## **Prerequisites**
 
